@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const { dbConnection } = require('./config/dbConnection');
 const cors = require('cors');
+require('dotenv').config();
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/user.routes');
 
@@ -17,4 +18,4 @@ console.log('Hello : ');
 app.get('/', async(req, res) => {
   res.end('Hello World');
   console.log('Hello World');
-}).listen(8080, () => {console.log('App is Running on Post number : 8080..')});
+}).listen(process.env.PORT, () => {console.log('App is Running on Post number : 8080..')});
