@@ -1,6 +1,7 @@
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 
@@ -11,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Todo Microservice Proxy
 const todoServiceProxy = createProxyMiddleware({
-    target: 'https://todo-services-a9jn.onrender.com',
+    target: process.env.TODO_URL,
     changeOrigin: true,
     pathRewrite: {
         '^/todo': ''
@@ -20,7 +21,7 @@ const todoServiceProxy = createProxyMiddleware({
 
 // User Microservice Proxy
 const userServiceProxy = createProxyMiddleware({
-    target: 'https://auth-services-g6ck.onrender.com',
+    target: process.env.AUTH_URL,
     changeOrigin: true,
     pathRewrite: {
         '^/user': ''
