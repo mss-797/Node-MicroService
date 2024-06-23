@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Todo Microservice Proxy
 const todoServiceProxy = createProxyMiddleware({
-    target: 'http://localhost:9090',//process.env.TODO_URL,
+    target: process.env.TODO_URL,
     changeOrigin: true,
     pathRewrite: {
         '^/todo': ''
@@ -21,7 +21,7 @@ const todoServiceProxy = createProxyMiddleware({
 
 // User Microservice Proxy
 const userServiceProxy = createProxyMiddleware({
-    target: 'http://localhost:8080',//process.env.AUTH_URL,
+    target: process.env.AUTH_URL,
     changeOrigin: true,
     pathRewrite: {
         '^/user': ''
